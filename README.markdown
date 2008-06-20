@@ -17,7 +17,7 @@ Rails 2.1+ is required for this plugin.
 * Open up `environment.rb` and create a list of available languages.  It's recommended to use the language code instead of the full name:
 
 <pre>
-HasAccent.languages = [:en, :sp, :fr]
+HasAccent.languages = [:en, :es, :fr]
 </pre>
 
 * The HasAccent's default language is english, this means that HasAccent will treat the actual values stored in the ActiveRecord instance as being in English, but you can override this setting.  For example, if you want to make French the default language:
@@ -57,7 +57,7 @@ The Translation model attributes are:
 
 2. translatable_attribute - Stores the name of the attribute that this translation is linked to (Using the example above, either 'name' or 'description')
 
-3. language -  Stores the language name or code, depending on how you set them up during the configuration ('en', 'fr', 'sp', etc...)
+3. language -  Stores the language name or code, depending on how you set them up during the configuration ('en', 'fr', 'es', etc...)
 
 ## Instructions
 
@@ -81,7 +81,7 @@ HasAccent.current_language = :en
 @product.name # => 'Car'
 @product.translated_name # => 'Car'
 
-HasAccent.current_language = :sp
+HasAccent.current_language = :es
 @product.name # => 'Car'
 @product.translated_name # => 'Carro'
 
