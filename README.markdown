@@ -79,15 +79,15 @@ end
 <pre>
 HasAccent.current_language = :en
 @product.name # => 'Car'
-@product.translated_name => 'Car'
+@product.translated_name # => 'Car'
 
 HasAccent.current_language = :sp
 @product.name # => 'Car'
-@product.translated_name => 'Carro'
+@product.translated_name # => 'Carro'
 
 HasAccent.current_language = :fr
 @product.name # => 'Car'
-@product.translated_name => 'Voiture'
+@product.translated_name # => 'Voiture'
 </pre>
 
 ---
