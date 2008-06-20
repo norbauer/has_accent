@@ -59,6 +59,7 @@ The Translation model attributes are:
 
 3. language -  Stores the language name or code, depending on how you set them up during the configuration ('en', 'fr', 'sp', etc...)
 
+## Instructions
 
 * ADD a `before_filter` in any of your Rails controllers to set the current language, ideally in your ApplicationController:
 
