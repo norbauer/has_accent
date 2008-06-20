@@ -1,6 +1,6 @@
 ## HasAccent
 
-HasAccent is an internalization plugin for Ruby on Rails.  It allows you to easily store and retrieve translations of any of your AR model's text fields in the database.
+HasAccent is an internalization plugin for Ruby on Rails.  It allows you to easily store and retrieve translations of any of your AR model's string/text fields in the database.
 
 ## Requirements
 
@@ -8,13 +8,13 @@ Rails 2.1+ is required for this plugin.
 
 ## Installation
 
-* In your Rails app root folder: `./script/plugin install git@github.com:norbauer/has_accent.git`
+* Sitting in your Rails app root folder: `./script/plugin install git@github.com:norbauer/has_accent.git`
 * Generate the required migrations with: `./script/generate translatable`
 * Run: `rake db:migrate`
    
 ## Configuration
 
-* Open up `environment.rb` and add create a list of available languages.  It's recommended to use the language code instead of the full name:
+* Open up `environment.rb` and create a list of available languages.  It's recommended to use the language code instead of the full name:
 
 <pre>
 HasAccent.languages = [:en, :sp, :fr]
@@ -54,10 +54,13 @@ end
 The Translation model attributes are: 
 
 1. content - Stores the actual text translation.
+
 2. translatable_attribute - Stores the name of the attribute that this translation is linked to (Using the example above, either 'name' or 'description')
+
 3. language -  Stores the language name or code, depending on how you set them up during the configuration ('en', 'fr', 'sp', etc...)
 
-* ADD a `before_filter` anywhere in any of your Rails controllers to set the current language, ideally in your ApplicationController:
+
+* ADD a `before_filter` in any of your Rails controllers to set the current language, ideally in your ApplicationController:
 
 <pre>
 class ApplicationController < ActionController::Base
@@ -83,7 +86,7 @@ HasAccent.current_language = :sp
 
 HasAccent.current_language = :sp
 @product.name # => 'Car'
-@product.translated_name => 'voiture'
+@product.translated_name => 'Voiture'
 </pre>
 
 ---
