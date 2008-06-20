@@ -1,11 +1,11 @@
 class CreateTranslations < ActiveRecord::Migration
   def self.up
     create_table :translations do |t|
-      t.string :translatable_type, :translatable_attribute, :language
-      t.integer :translatable_id
+      t.string :translatable_attribute, :language
+      t.references :translatable, :polymorphic => true
       t.text :content
       t.boolean :validated, :default => false
-      t.timestamps
+      t.timestampst
     end
   end
 
