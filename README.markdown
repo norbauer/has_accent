@@ -61,7 +61,7 @@ The Translation model attributes are:
 
 ## Instructions
 
-* ADD a `before_filter` in any of your Rails controllers to set the current language, ideally in your ApplicationController:
+* Add a `before_filter` in any of your Rails controllers to set the current language, ideally in your ApplicationController:
 
 <pre>
 class ApplicationController < ActionController::Base
@@ -85,7 +85,7 @@ HasAccent.current_language = :sp
 @product.name # => 'Car'
 @product.translated_name => 'Carro'
 
-HasAccent.current_language = :sp
+HasAccent.current_language = :fr
 @product.name # => 'Car'
 @product.translated_name => 'Voiture'
 </pre>
