@@ -17,9 +17,14 @@ module HasAccent
         after_create :create_pending_translations
         before_save :set_pending_translations
         
-        valid_columns = columns.select{ |column| column.type == :string || column.type == :text }.collect{ |column| column.name.to_sym }
         attribute_names = attribute_names.map(&:to_sym)
-        erroneous_columns = attribute_names - valid_columns
+        begin
+          valid_columns = columns.select{ |column| column.type == :string || column.type == :text }.collect{ |column| column.name.to_sym }
+          erroneous_columns = attribute_names - valid_columns
+        rescue
+          valid_columns, erroneous_columns = [], []
+        end
+        
         unless erroneous_columns.blank?
           raise(ArgumentError, err_the_sentence(erroneous_columns))
         end
