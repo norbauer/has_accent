@@ -1,4 +1,4 @@
-require "#{File.expand_path(File.dirname(__FILE__) + "/../../../../")}/config/boot.rb"
+#require "#{File.expand_path(File.dirname(__FILE__) + "/../../../../")}/config/boot.rb"
 require 'rubygems'
 require 'spec'
 require 'active_support'
