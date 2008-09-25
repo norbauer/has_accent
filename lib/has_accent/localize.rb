@@ -87,13 +87,16 @@ module HasAccent
         options[:attribute_names].each do |attribute_name|
           options[:languages].each do |language|
             possible_translation = nil
-            if similar_records = self.class.all(:conditions => ["? = ?", attribute_name, self.send(attribute_name)])
+            if similar_records = self.class.find(:all, :conditions => ["#{attribute_name} = ? AND id != ?", self.read_attribute(attribute_name), self.read_attribute(:id)])
               similar_records.each do |similar_record|
-                break if possible_translation = similar_record.translations.validated.first(:conditions => ["language = ?", language])
+                possible_translation = similar_record.translations.validated.by_language(language).first
+                break if possible_translation
               end
             end
-            translation = self.translations.create(:translatable_attribute => attribute_name.to_s, :language => language.to_s, :content => possible_translation)
+            translation = self.translations.create(:translatable_attribute => attribute_name.to_s, :language => language.to_s)
+            translation.content = possible_translation ? possible_translation.content : nil
             translation.set_as_dirty if possible_translation
+            translation.save
           end
         end
       end

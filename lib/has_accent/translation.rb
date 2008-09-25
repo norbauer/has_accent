@@ -10,7 +10,9 @@ class Translation < ActiveRecord::Base
   named_scope :pending_and_dirty, :conditions => { :validated => false }
   named_scope :dirty, :conditions => ["validated = FALSE AND content != '' && content IS NOT NULL"]
   named_scope :pending, :conditions => ["validated = FALSE AND content IS NULL OR content = ''"]
-  named_scope :by_type, lambda { |class_name| { :conditions => ["LOWER(translatable_type) = ?", class_name.to_s.downcase] } }
+  named_scope :by_attribute, lambda { |attribute_name| { :conditions => ["translatable_attribute = ?", attribute_name.to_s.downcase] } }
+  named_scope :by_type, lambda { |class_name| { :conditions => ["translatable_type = ?", class_name.to_s.downcase] } }
+  named_scope :by_language, lambda { |language| { :conditions => ["language = ?", language.to_s] } }
   
   def self.translatable_types
     find(:all).collect{ |t| t.translatable_type }.uniq
