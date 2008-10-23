@@ -46,7 +46,7 @@ module HasAccent
             raise(ArgumentError, "invalid language '#{lang}'") unless all_possible_languages.include?(lang.to_sym)
             return read_attribute(attribute_name) if lang.to_sym == options[:default_language].to_sym
             if translation = translations.find_by_translatable_attribute_and_language(attribute_name.to_s, lang.to_s)
-              return translation.content.blank ? read_attribute(attribute_name) : translation.content
+              return translation.content.blank? ? read_attribute(attribute_name) : translation.content
             else
               translations.create(:language => lang.to_s, :translatable_attribute => attribute_name.to_s)
               return read_attribute(attribute_name)
